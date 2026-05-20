@@ -1,0 +1,20 @@
+# Simulation waveforms and dumps
+*.vcd
+*.fsdb
+*.shm/
+*.wdb
+*.wcfg
+*.wlf
+
+# Compilation and log directories
+xsim.dir/
+csrc/
+simv/
+simv.daidir/
+work/
+vsim.wlf
+.Xil/
+*.log
+*.jou
+*.pb
+*.fmt
