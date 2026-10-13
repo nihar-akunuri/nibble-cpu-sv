@@ -2,6 +2,8 @@
 
 A nibble-serial interface controls a 32-bit command-driven CPU with a 4,096-word memory space. This repository contains the RTL implementation and a class-based SystemVerilog verification environment built around randomized transactions, a driver/monitor flow, a reference-model scoreboard, and functional coverage.
 
+The testbench evolved incrementally: it began as a basic Verilog testbench, and new features and verification capabilities were added week by week. That gradual development transformed it into the fully SystemVerilog-based testbench available in the repository today.
+
 > **Project scope:** This is a custom nibble-programmed CPU, not a RISC-V processor. The verification environment uses SystemVerilog classes and mailboxes; it is not currently a UVM environment.
 
 ## Contents
@@ -12,7 +14,6 @@ A nibble-serial interface controls a 32-bit command-driven CPU with a 4,096-word
 - [Repository layout](#repository-layout)
 - [Verification environment](#verification-environment)
 - [Simulation and coverage](#simulation-and-coverage)
-- [Known setup note](#known-setup-note)
 - [Tools](#tools)
 
 ## Highlights
@@ -122,7 +123,7 @@ The current constrained-random transaction constraint allows `ADD`, `SUB`, `MUL`
 
 ## Simulation and coverage
 
-The checked-in `testbench/Makefile` targets Mentor Questa/ModelSim and defines these targets:
+The testbench has been simulated using **QuestaSim**, and the simulation runs successfully with the testbench passing. The checked-in `testbench/Makefile` targets QuestaSim/ModelSim and defines these targets:
 
 | Target | Purpose |
 |---|---|
@@ -138,15 +139,11 @@ The checked-in `testbench/Makefile` targets Mentor Questa/ModelSim and defines t
 
 The Makefile sets the default seed to `500`; it can be overridden, for example, with `make run SEED=123`. Coverage reporting expects a database named `coverage_<SEED>.ucdb`.
 
-### Important: current Makefile paths
-
-The repository keeps RTL sources in `rtl/` and testbench sources in `testbench/`, while the checked-in Makefile lists source files by bare filenames and says they should be in the current directory. Consequently, the Makefile commands may need source-path/include-path adjustments to work directly from this repository layout. The README documents the existing setup; it does not imply that the current Makefile has been validated or repaired.
-
-No simulation result or coverage percentage is claimed here. Run the regression in your installed simulator and inspect its logs and coverage reports to confirm the current status.
+Run the simulation using the project setup and Makefile targets described above. The exact invocation depends on the working directory and how the source paths are configured in your local QuestaSim workspace.
 
 ## Tools
 
 - **Language:** Verilog/SystemVerilog
-- **Intended simulator:** Mentor QuestaSim / ModelSim
+- **Simulator used:** QuestaSim
 - **Build orchestration:** GNU Make
 - **Verification techniques:** class-based testbench, constrained randomization, mailboxes, reference-model checking, functional coverage
