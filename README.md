@@ -4,7 +4,7 @@ A nibble-serial interface controls a 32-bit command-driven CPU with a 4,096-word
 
 The testbench evolved incrementally: it began as a basic Verilog testbench, and new features and verification capabilities were added week by week. That gradual development transformed it into the fully SystemVerilog-based testbench available in the repository today.
 
-> **Project scope:** This is a custom nibble-programmed CPU, not a RISC-V processor. The verification environment uses SystemVerilog classes and mailboxes; it is not currently a UVM environment.
+> **Project scope:** This is a custom nibble-programmed CPU, not a RISC-V processor. The verification environment uses SystemVerilog classes and mailboxes.
 
 ## Contents
 
